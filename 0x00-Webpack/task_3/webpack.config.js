@@ -17,7 +17,8 @@ module.exports = {
       splitChunks: {
         chunks: 'all',
       },
-    },
+    }
+    devtool: 'inline-source-map',
     performance: {
       maxAssetSize: 1000000,
     },
