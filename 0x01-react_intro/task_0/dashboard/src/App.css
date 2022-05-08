@@ -5,9 +5,6 @@
 * {
   box-sizing: border-box;
 }
-button {
- margin: 1.2rem;
-}
 
 html,
 body {
@@ -20,7 +17,7 @@ body {
 .App {
   margin: 0;
   padding: 0;
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
 }
@@ -31,6 +28,7 @@ body {
   border-bottom: var(--color-red) 6px solid;
   margin: 0;
   color: var(--color-red);
+  /* height: 20%; */
 }
 
 .App .App-header .logo-container {
@@ -53,4 +51,5 @@ body {
   border-top: var(--color-red) 6px solid;
   text-align: center;
   padding: 1.4rem;
+  /* height: 5%; */
 }
