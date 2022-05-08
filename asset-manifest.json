@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/alx-react/0x01-react_intro/task_4/static/css/main.9186712b.css",
+    "main.js": "/alx-react/0x01-react_intro/task_4/static/js/main.0bc1d00d.js",
+    "static/media/close-icon.png": "/alx-react/0x01-react_intro/task_4/static/media/close-icon.77216faf75033430f70e.png",
+    "static/media/logo.jpg": "/alx-react/0x01-react_intro/task_4/static/media/logo.24bab5d633e36ca8d17e.jpg",
+    "index.html": "/alx-react/0x01-react_intro/task_4/index.html",
+    "main.9186712b.css.map": "/alx-react/0x01-react_intro/task_4/static/css/main.9186712b.css.map",
+    "main.0bc1d00d.js.map": "/alx-react/0x01-react_intro/task_4/static/js/main.0bc1d00d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9186712b.css",
+    "static/js/main.0bc1d00d.js"
+  ]
+}
