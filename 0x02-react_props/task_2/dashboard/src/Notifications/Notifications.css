@@ -1,0 +1,17 @@
+.Notifications {
+  border: 1px red dashed;
+  padding: 1.3rem;
+  position: relative;
+}
+
+img {
+  width: 100%;
+}
+
+ul li[data-priority="urgent"] {
+ color: red;
+}
+
+ul li[data-priority="default"] {
+ color: blue;
+}

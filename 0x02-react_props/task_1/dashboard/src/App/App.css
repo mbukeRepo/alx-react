@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.App .App-body {
+  padding: 1.5rem;
+  height: 78%;
+}
+
