@@ -9,10 +9,6 @@ describe('<App/>', () => {
     shallow(<App/>);
   });
 
-  it('renders notifications', () => {
-    expect(wrapper.find('Notifications')).toHaveLength(0);
-  });
-
   it('renders Header', () => {
     expect(wrapper.find('Header')).toHaveLength(1);
   });
