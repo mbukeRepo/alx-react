@@ -1,0 +1,10 @@
+:root {
+  --color-red: rgba(226, 30, 30, 0.767);
+}
+.App-footer {
+  position: relative;
+  bottom: 0;
+  border-top: var(--color-red) 6px solid;
+  text-align: center;
+  padding: 1.4rem;
+}
