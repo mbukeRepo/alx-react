@@ -4,6 +4,7 @@ import Login from '../Login/Login.js';
 import Notifications from "../Notifications/Notifications.js";
 import CourseList from "../CourseList/CourseList";
 import BodySection from '../BodySection/BodySection.js';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
 import PropTypes from 'prop-types';
 import "./App.css";
 import { getLatestNotification } from '../utils/utils';
@@ -42,11 +43,18 @@ class App extends React.Component {
         <Notifications listNotifications={listNotifications} displayDrawer/>
         <Header/>
         <main className="App-body">
-        <BodySection title="test">
-          <p>test</p>
-        </BodySection>
-          {isLoggedIn ? <CourseList listCourses={listCourses}/> : <Login/>}
+          {isLoggedIn ?
+             <BodySectionWithMarginBottom title="Course list"> 
+               <CourseList listCourses={listCourses}/>
+             </BodySectionWithMarginBottom> : 
+             <BodySectionWithMarginBottom title="Log in to continue">
+               <Login/>
+             </BodySectionWithMarginBottom>
+          }
         </main>
+         <BodySection title="News from the School">
+           <p> some random text</p>
+         </BodySection>
         <Footer/>
       </div>
     );
