@@ -1,5 +1,7 @@
 import Header from './Header.js';
 import { shallow } from 'enzyme';
+import React from 'react';
+
 
 const HeaderWrapper = shallow(<Header/>);
 

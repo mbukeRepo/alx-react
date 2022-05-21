@@ -1,5 +1,6 @@
 import {shallow} from 'enzyme';
 import NotificationItem from './NotificationItem';
+import React from 'react';
 
 it('renders without crashing', () => {
   shallow(<NotificationItem/>);
