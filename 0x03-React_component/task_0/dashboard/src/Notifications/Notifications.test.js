@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import Notifications from './Notifications';
 import { getLatestNotification } from '../utils/utils';
+import React from 'react';
 
 describe('ordinary tests', () => {
 

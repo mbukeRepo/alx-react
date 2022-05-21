@@ -1,6 +1,6 @@
 import {shallow} from 'enzyme';
 import Footer from './Footer';
-
+import React from 'react';
 const wrapper = shallow(<Footer/>);
 
 describe('<Footer/>', () => {
