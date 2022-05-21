@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import BodySection from './BodySection';
+import React from 'react';
 
 describe('BodySection', () => {
   it('testing h2 and children', () => {

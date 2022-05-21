@@ -1,7 +1,7 @@
 import {shallow} from 'enzyme';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom';
 import BodySection from './BodySection';
-
+import React from 'react';
 describe('BodySectionWithMarginBottom', () => {
   it('testing if BodySection is rendered correctly', () => {
         const wrapper = shallow(

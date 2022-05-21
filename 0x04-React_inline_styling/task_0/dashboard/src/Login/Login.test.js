@@ -1,5 +1,6 @@
 import {shallow} from 'enzyme';
 import Login from './Login.js';
+import React from 'react';
 
 const wrapper = shallow(<Login/>);
 
