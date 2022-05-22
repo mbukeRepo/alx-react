@@ -1,25 +1,27 @@
-import Header from '../Header/Header.js';
-import Footer from '../Footer/Footer.js';
-import Login from '../Login/Login.js';
-import Notifications from "../Notifications/Notifications.js";
-import CourseList from "../CourseList/CourseList";
-import BodySection from '../BodySection/BodySection.js';
-import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
+import React, { Component, Fragment } from 'react';
+import Header from '../Header/Header';
+import Login from '../Login/Login';
+import Footer from '../Footer/Footer';
+import Notifications from '../Notifications/Notifications';
+import CourseList from '../CourseList/CourseList';
+import BodySection from '../BodySection/BodySection';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import PropTypes from 'prop-types';
 import { getLatestNotification } from '../utils/utils';
-import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-
-class App extends React.Component {
-  componentDidMount ()  {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+  componentDidMount() {
     window.addEventListener('keydown', this.handleLogout);
   }
   componentWillUnmount() {
-    window.removeEventListener('keydown',this.handleLogout);
+    window.removeEventListener('keydown', this.handleLogout);
   }
-
-  handleLogout = (e) => {
+  handleLogout(e) {
     if (e.ctrlKey && e.key === 'h') {
       e.preventDefault();
       alert('Logging you out');
@@ -27,60 +29,59 @@ class App extends React.Component {
     }
   }
   render() {
-    const {isLoggedIn} = this.props;
     const listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
       { id: 2, name: 'Webpack', credit: 20 },
       { id: 3, name: 'React', credit: 40 },
-      ];
-      const listNotifications = [
-          { id: 1, type: 'default', value: 'New course available' },
-          { id: 2, type: 'urgent', value: 'New resume available' },
-          { id: 3, type: 'urgent', html: getLatestNotification()},
-      ];
+    ];
+    const listNotifications = [
+      { id: 1, type: 'default', value: 'New course available' },
+      { id: 2, type: 'urgent', value: 'New resume available' },
+      { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
+    ];
+    const { isLoggedIn } = this.props;
     return (
-      <div className={css(styles.App)}>
-        <Notifications listNotifications={listNotifications} displayDrawer/>
-        <Header/>
-        <main className={css(styles.AppBody)}>
-          {isLoggedIn ?
-             <BodySectionWithMarginBottom title="Course list"> 
-               <CourseList listCourses={listCourses}/>
-             </BodySectionWithMarginBottom> : 
-             <BodySectionWithMarginBottom title="Log in to continue">
-               <Login/>
-             </BodySectionWithMarginBottom>
-          }
-        </main>
-         <BodySection title="News from the School">
-           <p> some random text</p>
-         </BodySection>
-        <Footer/>
-      </div>
+      <Fragment>
+        <Notifications listNotifications={listNotifications} />
+        <Header />
+        {isLoggedIn ? (
+          <BodySectionWithMarginBottom title='Course list'>
+            <CourseList listCourses={listCourses} />
+          </BodySectionWithMarginBottom>
+        ) : (
+          <BodySectionWithMarginBottom title='Log in to continue'>
+            <Login />
+          </BodySectionWithMarginBottom>
+        )}
+        <BodySection title='News from the School'>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </BodySection>
+        <div className={css(styles.footer)}>
+          <Footer />
+        </div>
+      </Fragment>
     );
   }
 }
 
-
 App.defaultProps = {
   isLoggedIn: false,
-  logOut: () => undefined
+  logOut: () => undefined,
 };
+
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func
+  logOut: PropTypes.func,
 };
+
 const styles = StyleSheet.create({
-  App:{
-    margin: 0,
-    padding: 0,
-    position: 'absolute',
-    height: '100%',
+  footer: {
     width: '100%',
-  },
-  AppBody: {
-    padding: '1.5rem',
-    height: '78%',
+    position: 'fixed',
+    bottom: 0,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    borderTop: 'thick solid #e0344a',
   },
 });
 

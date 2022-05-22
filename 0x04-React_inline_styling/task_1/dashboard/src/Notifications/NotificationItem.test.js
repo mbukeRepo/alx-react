@@ -1,28 +1,41 @@
-import {shallow} from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
+import { StyleSheetTestUtils } from 'aphrodite';
 
-it('renders without crashing', () => {
-  shallow(<NotificationItem/>);
-});
+describe('<NotificationItem />', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
 
-it('renders correct passed in props', () => {
-  const wrapper = shallow(<NotificationItem type="default"  value="test" />);
-  const li = wrapper.find('li');
-  expect(li).toHaveLength(1);
-  expect(li.text()).toEqual("test");
-  expect(li.prop('data-priority')).toEqual('default');
-});
+  it('render without crashing', () => {
+    const wrapper = shallow(<NotificationItem />);
+    expect(wrapper.exists());
+  });
 
-it('testing markAsRead', () => {
-    const markAsRead = jest.fn((id) => console.log(`Notification ${id} has been marked as read`));
-    const wrapper = shallow(<NotificationItem id={1} value={'test'} markAsRead={markAsRead}/>);
-    const logSpy = jest.spyOn(console, 'log');
+  it('renders type and value props', () => {
+    const wrapper = shallow(<NotificationItem type='default' value='test' />);
     const li = wrapper.find('li');
+    expect(wrapper.exists());
+    expect(li.exists());
     expect(li).toHaveLength(1);
-    li.simulate('click');
-    expect(logSpy).toBeCalledWith('Notification 1 has been marked as read');
-    jest.restoreAllMocks();
+    expect(li.text()).toEqual('test');
+    expect(li.prop('data-notification-type')).toEqual('default');
+  });
+
+  it('renders html prop', () => {
+    const text = 'Here is the list of notifications';
+    const wrapper = shallow(
+      <NotificationItem html={{ __html: '<u>test</u>' }} />
+    );
+    const li = wrapper.find('li');
+    expect(wrapper.exists());
+    expect(li.exists());
+    expect(li.html()).toEqual(
+      '<li data-notification-type="default"><u>test</u></li>'
+    );
+  });
 });
-
-
-
