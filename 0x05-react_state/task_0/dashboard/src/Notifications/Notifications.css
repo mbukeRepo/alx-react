@@ -1,0 +1,32 @@
+.Notifications {
+  border: 1px red dashed;
+  padding: .3rem;
+  position: relative;
+  margin: 0;
+}
+
+img {
+  width: 100%;
+}
+
+ul li[data-priority='urgent'] {
+  color: red;
+}
+
+ul li[data-priority='default'] {
+  color: blue;
+}
+
+.nots_container {
+  position: fixed;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 10px;
+  top: 0;
+}
+.menuItem {
+  margin: 0;
+  padding: 0;
+}
