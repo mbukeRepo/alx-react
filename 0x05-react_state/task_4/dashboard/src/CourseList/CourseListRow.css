@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1.3px solid rgb(63, 58, 58);
+  max-width: 890px;
+  margin: auto;
+  padding: 15px;
+}
+td {
+  padding: 15px;
+}
+th {
+  border-bottom: 1.3px solid rgb(63, 58, 58);
+  padding: 15px;
+}
