@@ -35,3 +35,25 @@ export const hideNotificationDrawer = () => {
 };
 export const boundHideNotificationDrawer = () =>
   dispatch(hideNotificationDrawer());
+
+export const loginSuccess = () => {
+  return {
+    type: LOGIN_SUCCESS,
+  };
+};
+
+export const loginFailure = () => {
+  return {
+    type: LOGIN_FAILURE,
+  };
+};
+
+export const loginRequest = (email, password) => {
+  return (dispatch) => {
+    dispatch(login(email, password));
+    return fetch('http://localhost:3000/login-success.json')
+      .then((res) => res.json())
+      .then((json) => dispatch(loginSuccess()))
+      .catch((error) => dispatch(loginFailure()));
+  };
+};
