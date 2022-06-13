@@ -4,7 +4,7 @@ import {
   FETCH_NOTIFICATIONS_SUCCESS,
   MARK_AS_READ,
   SET_TYPE_FILTER,
-  
+  SET_LOADING_STATE
 } from "../actions/notificationActionTypes";
 
 export const initialNotificationState = {

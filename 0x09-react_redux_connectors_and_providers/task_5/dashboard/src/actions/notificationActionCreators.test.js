@@ -2,6 +2,7 @@ import {
   MARK_AS_READ,
   SET_TYPE_FILTER,
   NotificationTypeFilters,
+  SET_LOADING_STATE
 } from './notificationActionTypes';
 
 import {

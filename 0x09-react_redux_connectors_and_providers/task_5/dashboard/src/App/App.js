@@ -37,7 +37,6 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
-    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
     this.state = {
       user,
       listNotifications: listNotificationsInitialState,

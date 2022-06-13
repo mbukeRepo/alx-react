@@ -1,5 +1,5 @@
 import { MARK_AS_READ, SET_TYPE_FILTER, FETCH_NOTIFICATIONS_SUCCESS, SET_LOADING_STATE} from './notificationActionTypes';
-import fetch from "node-fetch";
+import axios from "axios";
 
 export const markAsAread = (index) => {
   return {
@@ -33,11 +33,14 @@ export const setNotifications = data => {
 };
 
 export const fetchNotifications = () => {
-  return dispatch => {
-    return fetch("./notifications.json")
-    .then(res => res.json())
-    .then(data => dispatch(setNotifications(data)))
-    .catch(error => {})
-    .finally(() => dispatch(setLoadingState(false)))
-  };
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.get("http://localhost:3000/notifications");
+      dispatch(setNotifications(data.notifications));
+      dispatch(setLoadingState(false))
+    } catch(err) {
+      console.log(err);
+      dispatch(setLoadingState(false));
+    }
+ };
 };
