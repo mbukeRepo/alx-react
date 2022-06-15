@@ -7,7 +7,7 @@ export const markAsAread = (index) => {
     index,
   };
 };
-export const boundMarkAsAread = (index) => dispatch(markAsAread(index));
+//export const boundMarkAsAread = (index) => dispatch(markAsAread(index));
 
 export const setNotificationFilter = (filter) => {
   return {
@@ -15,8 +15,8 @@ export const setNotificationFilter = (filter) => {
     filter,
   };
 };
-export const boundSetNotificationFilter = (filter) =>
-  dispatch(setNotificationFilter(filter));
+//export const boundSetNotificationFilter = (filter) =>
+  //dispatch(setNotificationFilter(filter));
 
 
 export const setLoadingState = loading => {
@@ -35,8 +35,8 @@ export const setNotifications = data => {
 export const fetchNotifications = () => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get("http://localhost:3000/notifications");
-      dispatch(setNotifications(data.notifications));
+      const {data} = await axios.get("http://localhost:3001/notifications");
+      dispatch(setNotifications(data));
       dispatch(setLoadingState(false))
     } catch(err) {
       console.log(err);

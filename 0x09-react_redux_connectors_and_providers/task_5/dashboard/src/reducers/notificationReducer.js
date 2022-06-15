@@ -1,5 +1,5 @@
 import { Map } from "immutable";
-
+import notificationsNormalizer from "../schema/notifications";
 import {
   FETCH_NOTIFICATIONS_SUCCESS,
   MARK_AS_READ,
@@ -13,14 +13,12 @@ export const initialNotificationState = {
   loading: false
 };
 
-import notificationsNormalizer from "../schema/notifications";
 
 const notificationReducer = (state = Map(initialNotificationState), action) => {
   switch (action.type) {
     case FETCH_NOTIFICATIONS_SUCCESS:
       const normalizedData = notificationsNormalizer(action.data);
-
-      Object.keys(normalizedData.notifications).map((key) => {
+      Object.keys(normalizedData.notifications).forEach((key) => {
         normalizedData.notifications[key].isRead = false;
       });
       return state.mergeDeep(normalizedData);

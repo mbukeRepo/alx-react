@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { fetchNotifications } from "../actions/notificationActionCreators";
 
 class Notifications extends PureComponent {
-  componentDidMount = () => {
+  componentDidMount () {
     this.props.fetchNotifications();
   };
   render() {
@@ -28,13 +28,14 @@ class Notifications extends PureComponent {
           <p className={show}>Your notifications</p>
         </div>
         {displayDrawer && (
+          // <div className="backdrop"></div>
           <div className={css(styles.notifications)}>
             <p>Here is the list of notifications</p>
             <ul>
               {listNotifications.length === 0 && (
                 <NotificationItem value='No new notification for now' />
               )}
-              {listNotifications.map((notification) => (
+              {listNotifications && Object.values(listNotifications).map((notification) => (
                 <NotificationItem
                   key={notification.id}
                   type={notification.type}
@@ -52,7 +53,7 @@ class Notifications extends PureComponent {
               style={{
                 display: 'inline-block',
                 position: 'absolute',
-                top: '56px',
+                top: '16px',
                 right: '16px',
                 background: 0,
                 border: 0,
@@ -64,7 +65,7 @@ class Notifications extends PureComponent {
               <img
                 src={close_icon}
                 alt=''
-                style={{ width: '8px', height: '8px' }}
+                style={{ width: '12px', height: '12px' }}
               />
             </button>
           </div>
@@ -84,7 +85,7 @@ Notifications.defaultProps = {
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
-  listNotifications: PropTypes.object,
+  // listNotifications: PropTypes.object,
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
   markNotificationAsRead: PropTypes.func
@@ -122,31 +123,38 @@ const translateYkf = {
   },
 };
 
-const borderKf = {
-  '0%': {
-    border: `3px dashed cyan`,
-  },
+// const borderKf = {
+//   '0%': {
+//     border: `3px dashed cyan`,
+//   },
 
-  '100%': {
-    border: `3px dashed #e0344a`,
-  },
-};
+//   '100%': {
+//     border: `3px dashed #e0344a`,
+//   },
+// };
 
 const styles = StyleSheet.create({
   notifications: {
     fontSize: '20px',
     border: 'thin dotted #e0344a',
     padding: '4px 16px',
-    float: 'right',
-    animationName: [borderKf],
-    animationDuration: '0.8s',
-    animationIterationCount: 1,
-    animationFillMode: 'forwards',
-    [screenSize.small]: {
-      width: '90%',
-      border: 'none',
-      backgroundColor: 'white',
-    },
+    position:"fixed",
+    top: "7.2rem",
+    borderRadius: "1.5rem",
+    marginLeft: "50px",
+    marginRight: "50px",
+    background:"white"
+    // float: 'right',
+    // zIndex: "500",
+    // animationName: [borderKf],
+    // animationDuration: '0.8s',
+    // animationIterationCount: 1,
+    // animationFillMode: 'forwards',
+    // [screenSize.small]: {
+    //   width: '90%',
+    //   border: 'none',
+    //   backgroundColor: 'white',
+    // },
   },
   menuItem: {
     textAlign: 'right',
@@ -176,8 +184,11 @@ export const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = {
-  fetchNotifications,
+const mapDispatchToProps = dispatch =>  {
+  return {
+    fetchNotifications: () => dispatch(fetchNotifications())
+  }
+  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

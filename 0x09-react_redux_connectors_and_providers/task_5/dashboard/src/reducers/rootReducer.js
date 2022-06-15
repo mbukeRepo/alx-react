@@ -3,12 +3,12 @@ import {Map} from 'immutable';
 import notificationReducer, {
   initialNotificationState,
 } from "./notificationReducer";
-import uiReducer, { initialUiState } from "./uiReducer";
+import uiReducer, { initialUIState } from "./uiReducer";
 
 export const initialState = {
   courses: Map(initialCourseState),
   notifications: Map(initialNotificationState),
-  ui: Map(initialUiState),
+  ui: Map(initialUIState),
 };
 
 const rootReducer = {

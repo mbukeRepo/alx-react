@@ -3,14 +3,9 @@ import { connect } from "react-redux";
 import { logout } from "../actions/uiActionCreators";
 import PropTypes from "prop-types";
 import { StyleSheet, css } from "aphrodite";
-import AppContext from "../App/AppContext";
 import holberton_logo from "./logo.jpg";
 
 export class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { user, logout } = this.props;
 
@@ -60,7 +55,6 @@ const styles = StyleSheet.create({
   },
 });
 
-Header.contextType = AppContext;
 
 Header.defaultProps = {
   user: null,
@@ -74,7 +68,7 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.get("user"),
+    user: state.ui.get("user"),
   };
 };
 

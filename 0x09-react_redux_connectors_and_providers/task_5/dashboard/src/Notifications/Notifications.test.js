@@ -209,3 +209,20 @@ describe('displayDrawer', () => {
     jest.restoreAllMocks();
   });
 });
+describe("fetchNotifications", () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
+  it("called", () => {
+     const fetchNotifications = jest.fn();
+     const wrapper = shallow(<Notifications  
+             fetchNotifications={fetchNotifications}/>
+     );
+     expect(fetchNotifications).toHaveBeenCalled();
+     jest.restoreAllMocks();
+  });
+});

@@ -1,4 +1,4 @@
-[
+{"notifications": [
   {
     "id": "5debd76480edafc8af244228",
     "author": {
@@ -266,3 +266,4 @@
     }
   }
 ]
+}
