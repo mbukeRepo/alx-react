@@ -16,25 +16,18 @@ export const unSelectCourse = (index) => {
 };
 //export const boundUnSelectCourse = (index) => dispatch(unSelectCourse(index));
 
-export const fetchCourses  = () => {
+export const setCourses = (data) => {
   return {
     type: FETCH_COURSE_SUCCESS,
-    data: [
-    {
-      id: 1,
-      name: "ES6",
-      credit: 60
-    },
-    {
-      id: 2,
-      name: "Webpack",
-      credit: 20
-    },
-    {
-      id: 3,
-      name: "React",
-      credit: 40
-    }
-  ]
+    data
   };
+}
+
+export const fetchCourses  = () => {
+  return dispatch => {
+    return fetch("http://localhost:3001/courses")
+    .then(res => res.json())
+    .then(data => dispatch(setCourses(data)))
+    .catch(err => err);
+  }
 };
