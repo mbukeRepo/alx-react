@@ -18,20 +18,20 @@ const courseReducer = (state = initialCourseState, action) => {
       });
 
     case SELECT_COURSE:
-      const newState = [...state];
-      newState[action.index] = true;
       return state.map(course => {
         if (course.id === action.index)
+             console.log(course)
              course.isSelected = true
         return course
       });
 
     case UNSELECT_COURSE:
-      return state.map(course => {
+      const newState = state.map(course => {
         if(course.id === action.index)
             course.isSelected = false
         return course
       })
+      return newState
     default:
       break;
   }

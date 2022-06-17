@@ -1,67 +1,108 @@
-import React, { useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, css } from 'aphrodite';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { StyleSheet, css } from "aphrodite";
 
-const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
-  const [checkbox, setCheckbox] = useState(false);
+const rowStyles = { backgroundColor: "#f5f5f5ab" };
+const headerRowStyles = { backgroundColor: "#deb5b545" };
 
-  const handleClick = () => {
-    setCheckbox(!checkbox);
+function CourseListRow({
+  id,
+  isHeader,
+  textFirstCell,
+  textSecondCell,
+  isChecked,
+  onChangeRow,
+}) {
+  const handleCheckbox = () => {
+    onChangeRow(id, !isChecked);
   };
 
-  const bgColor1 = { backgroundColor: '#f5f5f5ab' };
-  const bgColor2 = { backgroundColor: '#deb5b545' };
-  let bgColor = undefined;
-  let content = undefined;
+  let element;
+
+  const tableItemStyle = css(
+    isHeader ? styles.CourseListTh : styles.CourseListTd,
+    isChecked && styles.rowChecked
+  );
 
   if (isHeader === true) {
-    bgColor = bgColor2;
+    //
     if (textSecondCell === null) {
-      content = <th colSpan='2'>{textFirstCell}</th>;
+      element = (
+        <th colSpan="2" className={css(styles.CourseListThSpan2)}>
+          {textFirstCell}
+        </th>
+      );
     } else {
-      content = (
-        <Fragment>
-          <th className={css(styles.th)}>{textFirstCell}</th>
-          <th className={css(styles.th)}>{textSecondCell}</th>
-        </Fragment>
+      element = (
+        <>
+          <th className={tableItemStyle}>{textFirstCell}</th>
+          <th className={tableItemStyle}>{textSecondCell}</th>
+        </>
       );
     }
-  }
-  if (isHeader === false) {
-    bgColor = bgColor1;
-    content = (
-      <Fragment>
-        <td className={ checkbox?  css(styles.rowChecked) : ''} >
-          <input type='checkbox' onClick={handleClick}></input>
+    //
+  } else if (isHeader === false) {
+    element = (
+      <>
+        <td className={tableItemStyle}>
+          {textFirstCell !== "No course available yet" && (
+            <input type="checkbox" onClick={handleCheckbox}></input>
+          )}
+
           {textFirstCell}
         </td>
-        <td>{textSecondCell}</td>
-      </Fragment>
+        <td className={tableItemStyle}>{textSecondCell}</td>
+      </>
     );
   }
 
-  return <tr style={bgColor}>{content}</tr>;
-};
+  let isHeaderStyle;
+
+  if (isHeader) isHeaderStyle = headerRowStyles;
+  else isHeaderStyle = rowStyles;
+
+  return <tr style={isHeaderStyle}>{element}</tr>;
+}
 
 CourseListRow.defaultProps = {
+  id: null,
   isHeader: false,
   textSecondCell: null,
+  isChecked: false,
+  onChangeRow: () => {},
 };
 
 CourseListRow.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isHeader: PropTypes.bool,
   textFirstCell: PropTypes.string.isRequired,
   textSecondCell: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isChecked: PropTypes.bool,
+  onChangeRow: PropTypes.func,
+};
+
+const cssVars = {
+  borderTableColor: "rgb(170, 170, 170);",
 };
 
 const styles = StyleSheet.create({
-  th: {
-    textAlign: 'left',
-    borderTop: '1px solid gray',
-    borderBottom: '1px solid gray',
+  CourseListTh: {
+    borderTop: `1px solid ${cssVars.borderTableColor}`,
+    borderBottom: `1px solid ${cssVars.borderTableColor}`,
+    textAlign: "left",
+    fontSize: "18px",
   },
+
+  CourseListThSpan2: {
+    textAlign: "center",
+  },
+
+  CourseListTd: {
+    textAlign: "left",
+  },
+
   rowChecked: {
-    backgroundColor: '#e6e4e4',
+    backgroundColor: "#e6e4e4",
   },
 });
 
