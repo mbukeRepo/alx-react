@@ -5,7 +5,7 @@ import { Map } from "immutable";
 describe("uiReducer tests", function () {
   it("verifies the state returned by the uiReducer function equals the initial state when no action is passed", function () {
     const expectedState = {
-      courses: Map({}),
+      courses: [],
       notifications: Map({}),
       ui: Map({}),
     };

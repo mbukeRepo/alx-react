@@ -12,7 +12,7 @@ describe("courseReducer tests", function () {
   it("Tests that the default state returns an empty arr", function () {
     const state = courseReducer(undefined, {});
 
-    expect(state).toEqual(Map(initialCourseState));
+    expect(state).toEqual(initialCourseState);
   });
   it("Tests that FETCH_COURSE_SUCCESS returns the data passed", function () {
     const action = {
@@ -58,7 +58,7 @@ describe("courseReducer tests", function () {
     ];
 
     const state = courseReducer(undefined, action);
-    expect(state.toJS()).toEqual(coursesNormalizer(expectedData));
+    expect(state).toEqual(expectedData);
   });
   it("Tests that SELECT_COURSE returns the data with the right item updated", function () {
     const initialState = [
@@ -109,11 +109,11 @@ describe("courseReducer tests", function () {
     ];
 
     const state = courseReducer(
-      fromJS(coursesNormalizer(initialState)),
+      initialState,
       action
     );
 
-    expect(state.toJS()).toEqual(coursesNormalizer(expectedData));
+    expect(state).toEqual(expectedData);
   });
   it("Tests that UNSELECT_COURSE returns the data with the right item updated", function () {
     const initialState = [
@@ -164,10 +164,10 @@ describe("courseReducer tests", function () {
     ];
 
     const state = courseReducer(
-      fromJS(coursesNormalizer(initialState)),
+      initialState,
       action
     );
 
-    expect(state.toJS()).toEqual(coursesNormalizer(expectedData));
+    expect(state).toEqual(expectedData);
   });
 });

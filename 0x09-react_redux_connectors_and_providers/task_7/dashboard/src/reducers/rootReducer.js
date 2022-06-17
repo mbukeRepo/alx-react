@@ -6,7 +6,7 @@ import notificationReducer, {
 import uiReducer, { initialUIState } from "./uiReducer";
 
 export const initialState = {
-  courses: Map(initialCourseState),
+  courses: [],
   notifications: Map(initialNotificationState),
   ui: Map(initialUIState),
 };

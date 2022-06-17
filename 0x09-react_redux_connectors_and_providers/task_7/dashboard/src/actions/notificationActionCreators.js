@@ -39,7 +39,6 @@ export const fetchNotifications = () => {
       dispatch(setNotifications(data));
       dispatch(setLoadingState(false))
     } catch(err) {
-      console.log(err);
       dispatch(setLoadingState(false));
     }
  };

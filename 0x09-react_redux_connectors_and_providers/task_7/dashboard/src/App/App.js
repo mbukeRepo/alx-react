@@ -19,17 +19,7 @@ import {
   logout,
 } from "../actions/uiActionCreators";
 
-const listCourses = [
-  { id: 1, name: "ES6", credit: 60 },
-  { id: 2, name: "Webpack", credit: 20 },
-  { id: 3, name: "React", credit: 40 },
-];
 
-export const listNotificationsInitialState = [
-  { id: 1, type: "default", value: "New course available" },
-  { id: 2, type: "urgent", value: "New resume available" },
-  { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
-];
 
 document.body.style.margin = 0;
 
@@ -37,10 +27,6 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
-    this.state = {
-      user,
-      listNotifications: listNotificationsInitialState,
-    };
   }
 
   handleKeyCombination(e) {
@@ -59,7 +45,7 @@ export class App extends Component {
   }
 
   render() {
-    const {  listNotifications } = this.state;
+    
 
     const {
       isLoggedIn,
@@ -67,13 +53,13 @@ export class App extends Component {
       displayNotificationDrawer,
       hideNotificationDrawer,
       login,
+      listCourses
 //      logout,
     } = this.props;
 
     return (
       <>
         <Notifications
-          listNotifications={listNotifications}
           displayDrawer={displayDrawer}
           handleDisplayDrawer={displayNotificationDrawer}
           handleHideDrawer={hideNotificationDrawer}
@@ -178,6 +164,7 @@ export const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.ui.get("isUserLoggedIn"),
     displayDrawer: state.ui.get("isNotificationDrawerVisible"),
+    listCourses: state.courses
   };
 };
 

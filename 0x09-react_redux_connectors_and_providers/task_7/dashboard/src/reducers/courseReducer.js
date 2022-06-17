@@ -6,25 +6,32 @@ import {
   UNSELECT_COURSE,
 } from "../actions/courseActionTypes";
 
-import coursesNormalizer from "../schema/courses";
 
 export const initialCourseState = [];
 
-const courseReducer = (state = Map(initialCourseState), action) => {
+const courseReducer = (state = initialCourseState, action) => {
   switch (action.type) {
     case FETCH_COURSE_SUCCESS:
-      const normalizedData = coursesNormalizer(action.data);
-      Object.keys(normalizedData).map((key) => {
-        normalizedData[key].isSelected = false;
+      return action.data.map(course => {
+        course.isSelected = false;
+        return course
       });
-      return state.merge(normalizedData);
 
     case SELECT_COURSE:
-      return state.setIn([String(action.index), "isSelected"], true);
+      const newState = [...state];
+      newState[action.index] = true;
+      return state.map(course => {
+        if (course.id === action.index)
+             course.isSelected = true
+        return course
+      });
 
     case UNSELECT_COURSE:
-      return state.setIn([String(action.index), "isSelected"], false);
-
+      return state.map(course => {
+        if(course.id === action.index)
+            course.isSelected = false
+        return course
+      })
     default:
       break;
   }

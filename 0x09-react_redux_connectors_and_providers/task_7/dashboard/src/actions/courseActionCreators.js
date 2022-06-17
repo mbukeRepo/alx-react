@@ -27,7 +27,8 @@ export const fetchCourses  = () => {
   return dispatch => {
     return fetch("http://localhost:3001/courses")
     .then(res => res.json())
-    .then(data => dispatch(setCourses(data)))
-    .catch(err => err);
+    .then(data => {
+      dispatch(setCourses(data))
+    }).catch(err => err);
   }
 };

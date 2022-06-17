@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CourseListRow from './CourseListRow';
 import CourseShape from './CourseShape';
 import PropTypes from 'prop-types';
 import {StyleSheet, css} from 'aphrodite';
+import {fetchCourses} from "../actions/courseActionCreators"
+import { connect } from 'react-redux';
 
-const CourseList = ({listCourses}) => {
+const CourseList = ({listCourses, fetchCourses}) => {
+  useEffect(() => {
+    fetchCourses();
+  }, []);
   return (
     <table className={css(styles.table)}>
       <thead>
@@ -58,4 +63,10 @@ const styles = StyleSheet.create({
     padding: '15px',
   }
 });
-export default CourseList;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCourses: () => dispatch(fetchCourses())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CourseList);
