@@ -1,4 +1,4 @@
-import courseReducer, { initialCourseState } from "./courseReducer";
+import courseReducer from "./courseReducer";
 import {Map} from 'immutable';
 import notificationReducer, {
   initialNotificationState,

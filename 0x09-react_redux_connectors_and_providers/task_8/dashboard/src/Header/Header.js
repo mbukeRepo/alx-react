@@ -11,7 +11,7 @@ export class Header extends Component {
 
     return (
       <div className={css(styles.header)}>
-        <img src={holberton_logo} className={css(styles.headerImg)} />
+        <img src={holberton_logo} alt="logo..." className={css(styles.headerImg)} />
         <h1>School dashboard</h1>
 
         {user && (

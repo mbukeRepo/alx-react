@@ -9,7 +9,7 @@ export function Footer({ user }) {
       <p>
         Copyright {getFullYear()} - {getFooterCopy(true)}
       </p>
-      {user && <a href="#">Contact us</a>}
+      {user && <a href="google.com">Contact us</a>}
     </div>
   );
 }

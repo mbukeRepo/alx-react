@@ -8,7 +8,7 @@ class NotificationItem extends React.PureComponent {
   }
  
   render() {
-    const { type, html, value, markAsRead, guid } = this.props;
+    const { type, html, value } = this.props;
     const color = css(type === 'urgent' ? styles.urgent : styles.default);
     
     let li;

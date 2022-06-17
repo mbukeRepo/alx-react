@@ -8,9 +8,9 @@ import Login from "../Login/Login";
 import CourseList from "../CourseList/CourseList";
 import Footer from "../Footer/Footer";
 import PropTypes from "prop-types";
-import { getLatestNotification } from "../utils/utils";
+
 import { StyleSheet, css } from "aphrodite";
-import { user } from "./AppContext";
+
 //import AppContext from "./AppContext";
 import {
   displayNotificationDrawer,

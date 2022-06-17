@@ -4,8 +4,8 @@ import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { connect } from "react-redux";
-import { fetchNotifications } from "../actions/notificationActionCreators";
-import { getUnreadNotifications } from "../selectors/notificationSelector";
+import { fetchNotifications, setNotificationFilter } from "../actions/notificationActionCreators";
+import { getUnreadNotificationsByType } from "../selectors/notificationSelector";
 import { markAsAread } from "../actions/notificationActionCreators"
 
 class Notifications extends PureComponent {
@@ -18,6 +18,7 @@ class Notifications extends PureComponent {
       listNotifications,
       handleDisplayDrawer,
       handleHideDrawer,
+      setNotificationFilter
     } = this.props;
     const show = css(displayDrawer ? styles.showOff : styles.showOn);
     return (
@@ -33,6 +34,27 @@ class Notifications extends PureComponent {
           // <div className="backdrop"></div>
           <div className={css(styles.notifications)}>
             <p>Here is the list of notifications</p>
+            <button
+              type="button"
+              className={css(styles.filterButton)}
+              id="buttonFilterUrgent"
+              onClick={() => {
+                setNotificationFilter("URGENT");
+              }}
+            >
+              ❗❗
+            </button>
+            <button
+              type="button"
+              className={css(styles.filterButton)}
+              id="buttonFilterDefault"
+              onClick={() => {
+                setNotificationFilter("DEFAULT");
+              }}
+            >
+              💠
+            </button>
+
             <ul>
               {listNotifications.length === 0 && (
                 <NotificationItem value='No new notification for now' />
@@ -184,7 +206,7 @@ const styles = StyleSheet.create({
 });
 
 export const mapStateToProps = state => {
-  const unreads = getUnreadNotifications(state);
+  const unreads = getUnreadNotificationsByType(state);
   return {
     listNotifications: unreads,
   }
@@ -193,7 +215,8 @@ export const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>  {
   return {
     fetchNotifications: () => dispatch(fetchNotifications()),
-    markNotificationAsRead: (id) => dispatch(markAsAread(id))
+    markNotificationAsRead: (id) => dispatch(markAsAread(id)),
+    setNotificationFilter: (filter) => dispatch(setNotificationFilter(filter))
   }
   
 };

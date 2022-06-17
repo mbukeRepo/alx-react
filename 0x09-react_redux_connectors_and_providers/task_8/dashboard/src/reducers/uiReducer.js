@@ -1,5 +1,4 @@
 import { Map } from "immutable";
-import { logout } from "../actions/uiActionCreators";
 
 import {
   LOGIN,
