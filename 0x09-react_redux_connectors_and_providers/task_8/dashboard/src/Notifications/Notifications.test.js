@@ -210,7 +210,7 @@ describe('displayDrawer', () => {
     jest.restoreAllMocks();
   });
 });
-describe("fetchNotifications", () => {
+describe("Testing functions", () => {
   beforeAll(() => {
     StyleSheetTestUtils.suppressStyleInjection();
   });
@@ -218,12 +218,26 @@ describe("fetchNotifications", () => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
 
-  it("called", () => {
+  it("testing fetchNotifications", () => {
      const fetchNotifications = jest.fn();
      const wrapper = shallow(<Notifications  
              fetchNotifications={fetchNotifications}/>
      );
      expect(fetchNotifications).toHaveBeenCalled();
      jest.restoreAllMocks();
+  });
+  it("testing setNotificationFilter", () => {
+    const setNotificationFilter = jest.fn();
+    const wrapper = shallow(
+        <Notifications
+          setNotificationFilter={setNotificationFilter}
+          displayDrawer={true}
+        />
+      );
+    wrapper.find("#buttonFilterUrgent").simulate("click");
+    expect(setNotificationFilter).toHaveBeenCalledWith(1, "URGENT");
+    wrapper.find("#buttonFilterUrgent").simulate("click");
+    expect(setNotificationFilter).toHaveBeenNthCalledWith(2, "DEFAULT");
+    jest.restoreAllMocks();
   });
 });
