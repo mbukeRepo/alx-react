@@ -1,6 +1,3 @@
-
-
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Notifications from "../Notifications/Notifications";
@@ -188,8 +185,8 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.get("isUserLoggedIn"),
-    displayDrawer: state.get("isNotificationDrawerVisible"),
+    isLoggedIn: state.ui.get("isUserLoggedIn"),
+    displayDrawer: state.ui.get("isNotificationDrawerVisible"),
   };
 };
 

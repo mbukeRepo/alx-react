@@ -10,6 +10,11 @@ import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBot
 import { getLatestNotification } from '../utils/utils';
 import { StyleSheet, css } from 'aphrodite';
 import { user, logOut, AppContext } from './AppContext';
+import {
+  displayNotificationDrawer,
+  hideNotificationDrawer,
+} from "../actions/uiActionCreators";
+
 
 const listCourses = [
   { id: 1, name: 'ES6', credit: 60 },
@@ -26,8 +31,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
@@ -48,13 +51,6 @@ class App extends Component {
       alert('Logging you out');
       this.state.logOut();
     }
-  }
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-  }
-
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
   }
   logIn(email, password) {
     this.setState({
@@ -139,5 +135,10 @@ return {
   displayDrawer: state.get("isNotificationDrawerVisible")
 };
 }
+
+const mapDispatchToProps = {
+  displayNotificationDrawer,
+  hideNotificationDrawer,
+};
 
 export default connect(mapStateToProps)(App) ;

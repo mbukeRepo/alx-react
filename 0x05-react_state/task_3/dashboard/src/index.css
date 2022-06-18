@@ -1,0 +1,20 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+ul li[data-priority='urgent'] {
+  color: red;
+}
+
+ul li[data-priority='default'] {
+  color: blue;
+}
+
